@@ -2,8 +2,8 @@ def call(Map configMap){   //
     pipeline {
         agent { label 'jenkins-agent' }
         environment { 
-            PROJECT = configMap.get('')
-            COMPONENT = configMap.get()
+            PROJECT = configMap.get('project')
+            COMPONENT = configMap.get('component')
             appVersion = ''
             ACC_ID = '010526266250'
         }
@@ -37,7 +37,7 @@ def call(Map configMap){   //
                 steps {
                 script{ 
                     sh """
-                        echo this will run when the developers will created
+                        echo "this will run when the developers will created"
                     """
                 }
                 }
