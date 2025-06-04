@@ -33,6 +33,15 @@ def call(Map configMap){   //
                 }
                 }
             }
+            stage('unit test') {
+                steps {
+                script{ 
+                    sh """
+                        echo this will run when the developers will created
+                    """
+                }
+                }
+            }
             // stage('Run Sonarqube') {
             //     environment {
             //         scannerHome = tool 'sonar-scanner-7.1';
