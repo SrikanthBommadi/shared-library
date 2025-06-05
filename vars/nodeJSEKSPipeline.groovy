@@ -28,7 +28,7 @@ def call(Map configMap){   //
                 steps {
                 script{ 
                     sh """
-                        maven clean package
+                        npm install
                     """
                 }
                 }
