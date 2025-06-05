@@ -26,20 +26,20 @@ def call(Map configMap){   //
             }
             stage('Install Dependencies') {
                 steps {
-                script{ 
-                    sh """
-                        npm install
-                    """
-                }
+                    script{ 
+                        sh """
+                            sh 'npm install'
+                        """
+                    }
                 }
             }
             stage('unit test') {
                 steps {
-                script{ 
-                    sh """
-                        echo "this will run when the developers will created"
-                    """
-                }
+                    script{ 
+                        sh """
+                            echo 'this will run when the developers will created'
+                        """
+                    }
                 }
             }
             // stage('Run Sonarqube') {
