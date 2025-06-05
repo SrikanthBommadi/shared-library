@@ -26,22 +26,21 @@ def call(Map configMap){   //
             }
             stage('Install Dependencies') {
                 steps {
-                    script{ 
-                        sh """
-                            sh 'npm install'
-                        """
+                    script { 
+                        sh 'npm install'
                     }
                 }
             }
-            stage('unit test') {
-                steps {
-                    script{ 
-                        sh """
-                            echo 'this will run when the developers will created'
-                        """
-                    }
-                }
-            }
+
+            // stage('unit test') {
+            //     steps {
+            //         script{ 
+            //             sh """
+            //                 echo 'this will run when the developers will created'
+            //             """
+            //         }
+            //     }
+            // }
             // stage('Run Sonarqube') {
             //     environment {
             //         scannerHome = tool 'sonar-scanner-7.1';
