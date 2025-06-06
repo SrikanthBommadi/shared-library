@@ -6,6 +6,7 @@ def call(Map configMap){   //
             COMPONENT = configMap.get('component')
             appVersion = ''
             ACC_ID = '010526266250'
+            environment = 'dev'
         }
         options {
             disableConcurrentBuilds()
@@ -62,7 +63,7 @@ def call(Map configMap){   //
             stage('Docker Build') {
                 steps {
                 script{
-                    withAWS(region: 'us-east-1', credentials: 'aws') {
+                    withAWS(region: 'us-east-1', credentials: "aws-${environment}") {
                         sh """
                         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com
 
