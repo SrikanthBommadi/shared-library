@@ -18,28 +18,28 @@ def call(Map configMap){   //
             stage('Read Version') {
                 steps {
                     script{
-                        def packageJson = readJSON file: 'package.json'
-                        appVersion = packageJson.version
-                        echo "Version is: $appVersion"
+                        def pom = readMavenPom file: 'pom.xml'
+                        appVersion = pom.version
+                        echo "App version: ${appVersion}"
                     }
                 }
             }
             stage('Install Dependencies') {
                 steps {
-                script{ 
-                    sh """
-                        maven clean package
-                    """
-                }
+                    script{ 
+                        sh """
+                            mvn clean package
+                        """
+                    }
                 }
             }
             stage('unit test') {
                 steps {
-                script{ 
-                    sh """
-                        echo "this will run when the developers will created"
-                    """
-                }
+                    script{ 
+                        sh """
+                            echo "this will run when the developers will created"
+                        """
+                    }
                 }
             }
             // stage('Run Sonarqube') {
@@ -63,7 +63,7 @@ def call(Map configMap){   //
             stage('Docker Build') {
                 steps {
                 script{
-                    withAWS(region: 'us-east-1', credentials: 'aws') {
+                    withAWS(region: 'us-east-1', credentials: "aws-${dev}") {
                         sh """
                         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com
 
